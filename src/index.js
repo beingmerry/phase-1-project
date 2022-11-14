@@ -1,5 +1,5 @@
 // 🏗️ Import list of dependencies
-import dotenv from 'dotenv';
+require('dotenv').config()
 
 fetch(`https://developer.nps.gov/api/v1/parks?parkCode=yell&api_key=${API_KEY}`)
 .then(response => response.json())
