@@ -9,6 +9,7 @@ const listBreweries = document.querySelector('ol#list-breweries')
 // 🎯 4. Build the like function into each brewery, when liked, load that brewery into local db
 // 🎯 5. Build the "Add to my bar hop" function
 
+// 🥇 Initialize all scripts, forms, and event listeners
 const init = () => {
   fetch(`https://api.openbrewerydb.org/breweries?by_city=boulder`)
   .then(response => response.json())
