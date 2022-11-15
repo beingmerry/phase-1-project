@@ -1,6 +1,6 @@
 // 🎯🟢 Fetch the breweries near you! Boulder by default
 
-const cityFetch = (city) =>{
+const cityFetch = (city="Boulder") =>{
     fetch(`https://api.openbrewerydb.org/breweries?by_city=${city}`)
     .then(response => response.json())
     .then(breweries => {
@@ -31,22 +31,32 @@ const loadSearchResults = (breweries) => {
   }
 
 
-const renderBrewery = (brewery)=>{
-    breweryName.dataset.id     = brewery.id
-    breweryName.textContent    = brewery.name
-    breweryType.textContent    = brewery.brewery_type.toUpperCase()
-    breweryAddress.textContent = `${brewery.street}, ${brewery.city}, ${brewery.state} ${brewery.postal_code}`
-    brewerySite.textContent    = brewery.website_url
-    brewerySite.href           = brewery.website_url
+  const renderBrewery = (brewery)=>{
+    currentBrewery.breweryApiId       = brewery.id
+    currentBrewery.name               = brewery.name
+    currentBrewery.breweryType        = brewery.brewery_type.toUpperCase()
+    currentBrewery.breweryFullAddress = `${brewery.street}, ${brewery.city}, ${brewery.state} ${brewery.postal_code}`
+    currentBrewery.url                = brewery.website_url
+
+    breweryName.dataset.id     = currentBrewery.breweryApiId      
+    breweryName.textContent    = currentBrewery.name              
+    breweryType.textContent    = currentBrewery.breweryType       
+    breweryAddress.textContent = currentBrewery.breweryFullAddress
+    brewerySite.textContent    = currentBrewery.url               
+    brewerySite.href           = currentBrewery.url
 }
 
-const myBreweriesFetch = (newBrewery)=>{
+const renderFavorites = () =>{
+
+}
+
+const postNewBrewery = ()=>{
     fetch(`http://localhost:3000/myBreweryList`,{
         method:`POST`,
         headers: {
             'Content-Type': 'application/json',
             Accept : 'application/json'
         },
-        body: JSON.stringify(newBrewery) 
+        body: JSON.stringify(currentBrewery) 
     })
 }

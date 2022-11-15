@@ -1,3 +1,25 @@
 {
-  "myBreweryList": {}
+  "myBreweryList": [
+    {
+      "name": "New Planet Beer Co",
+      "breweryType": "CONTRACT",
+      "breweryFullAddress": "3980 Broadway St Ste 103 # 116, Boulder, Colorado 80304-1161",
+      "url": "http://www.newplanetbeer.com",
+      "id": 1
+    },
+    {
+      "name": "Beyond The Mountain Brewing Company",
+      "breweryType": "MICRO",
+      "breweryFullAddress": "6035 Longbow Dr Unit 109, Boulder, Colorado 80301-3203",
+      "url": "http://www.btmbrewing.com",
+      "id": 2
+    },
+    {
+      "name": "FATE Brewing Company",
+      "breweryType": "BREWPUB",
+      "breweryFullAddress": "1600 38th St Ste 100, Boulder, Colorado 80301-2610",
+      "url": null,
+      "id": 3
+    }
+  ]
 }

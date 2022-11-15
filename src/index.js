@@ -1,6 +1,6 @@
 // 🌐 Global Variables
 let allBreweries =[];
-
+let currentBrewery = {};
 const listBreweries = document.querySelector('ol#list-breweries');
 
 const breweryName       = document.querySelector('#brewery-name');
@@ -27,14 +27,16 @@ const breweryAddButton = document.querySelector('#add-brewery-button')
 const init = () => {
   initBrewerySearchForm()
   initBreweryAddButton()
-  cityFetch("Boulder")
+  cityFetch()
 }
 
 const initBrewerySearchForm = () => {
   brewerySearchForm.addEventListener('submit', (e)=>{
     e.preventDefault()
-    console.log(e.target)
-    cityFetch(brewerySearchForm.city.value)
+    const city = brewerySearchForm.city.value
+    if (city !== ''){
+      cityFetch(city)
+    }
   })
 }
 
@@ -47,8 +49,10 @@ const initBreweryAddButton = () => {
     newBrewery.id = `my-brewery-${idValue}`
     newBrewery.textContent = breweryName.textContent
     myBreweriesList.appendChild(newBrewery)
-    console.log(newBrewery)
-    myBreweriesFetch(newBrewery)
+    
+
+
+    postNewBrewery()
   })
 }
 
