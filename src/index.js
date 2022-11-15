@@ -1,6 +1,10 @@
 // 🌐 Global Variables
 const listBreweries = document.querySelector('ol#list-breweries') 
 let allBreweries =[];
+const breweryName = document.querySelector('#brewery-name');
+const breweryType = document.querySelector('#brewery-type');
+const breweryAdd = document.querySelector('#brewery-address');
+const brewerySite = document.querySelector('#brewery-url');
 // ⚠️ Warnings ⚠️
 // ⚠️ Helper functions are located in the helper.js file ⚠️
 // 🏗️ Current Tasks
