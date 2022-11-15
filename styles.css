@@ -1,6 +1,38 @@
+@counter-style beer-emoji {
+	system: cyclic;
+	symbols: "🍺" "🍻" "🥳";
+	suffix: "| ";
+}
+
+@counter-style like-emoji {
+	system: cyclic;
+	symbols: "♥️" "⌚" "🚩";
+	suffix: "| ";
+}
+
 li.brewery-list-element:hover {
     background-color: aqua;
+    border-bottom: 1px solid black;
+}
+
+li.brewery-list-element {
+    list-style-type: beer-emoji;
+    border-bottom: 1px solid gray;
+    padding-bottom: 5px;
     cursor: pointer;
+}
+
+li.brewery-list-element {
+  list-style-type: beer-emoji;
+  border-bottom: 1px solid gray;
+  padding-bottom: 5px;
+  cursor: pointer;
+}
+
+li.my-brewery-list-element {
+  list-style-type: like-emoji;
+  border-bottom: 1px solid gray;
+  padding-bottom: 5px;
 }
 
 #submit-search {
