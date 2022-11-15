@@ -16,7 +16,6 @@ const cityFetch = (city) =>{
     })   
 }
 
-
 const loadSearchResults = (breweries) => {
     listBreweries.innerHTML = ""
     allBreweries = [...breweries]
@@ -24,6 +23,7 @@ const loadSearchResults = (breweries) => {
       const newBreweryListElement = document.createElement('li')
       newBreweryListElement.textContent = brewery.name
       newBreweryListElement.id          = `${brewery.id}`
+      newBreweryListElement.classList.add('brewery-list-element')
       newBreweryListElement.addEventListener('click', ()=>renderBrewery(brewery))
       listBreweries.appendChild(newBreweryListElement)
     });
@@ -31,9 +31,11 @@ const loadSearchResults = (breweries) => {
   }
 
 
-  const renderBrewery = (brewery)=>{
-    breweryName.textContent = brewery.name
-    breweryType.textContent = brewery.brewery_type.toUpperCase()
-    breweryAdd.textContent = brewery.street
-    brewerySite.src = brewery.website_url
+const renderBrewery = (brewery)=>{
+    breweryName.dataset.id     = brewery.id
+    breweryName.textContent    = brewery.name
+    breweryType.textContent    = brewery.brewery_type.toUpperCase()
+    breweryAddress.textContent = `${brewery.street}, ${brewery.city}, ${brewery.state} ${brewery.postal_code}`
+    brewerySite.textContent    = brewery.website_url
+    brewerySite.href           = brewery.website_url
 }

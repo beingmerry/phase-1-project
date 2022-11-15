@@ -1,11 +1,16 @@
 // 🌐 Global Variables
-const listBreweries = document.querySelector('ol#list-breweries') 
 let allBreweries =[];
-const breweryName = document.querySelector('#brewery-name');
-const breweryType = document.querySelector('#brewery-type');
-const breweryAdd = document.querySelector('#brewery-address');
-const brewerySite = document.querySelector('#brewery-url');
-const brewerySearchForm = document.querySelector('#search-form')
+
+const listBreweries = document.querySelector('ol#list-breweries');
+
+const breweryName       = document.querySelector('#brewery-name');
+const breweryType       = document.querySelector('#brewery-type');
+const breweryAddress    = document.querySelector('#brewery-address');
+const brewerySite       = document.querySelector('#brewery-url');
+const brewerySearchForm = document.querySelector('#search-form');
+
+const myBreweriesList  = document.querySelector('#my-breweries-list');
+const breweryAddButton = document.querySelector('#add-brewery-button')
 
 // ⚠️ Warnings ⚠️
 // ⚠️ Helper functions are located in the helper.js file ⚠️
@@ -20,13 +25,31 @@ const brewerySearchForm = document.querySelector('#search-form')
 
 
 const init = () => {
-  cityFetch("Boulder")  
+  initBrewerySearchForm()
+  initBreweryAddButton()
+  cityFetch("Boulder")
 }
+
+const initBrewerySearchForm = () => {
+  brewerySearchForm.addEventListener('submit', (e)=>{
+    e.preventDefault()
+    console.log(e.target)
+    cityFetch(brewerySearchForm.city.value)
+  })
+}
+
+const initBreweryAddButton = () => {
+  breweryAddButton.addEventListener('click', (e)=>{
+    e.preventDefault()
+    const newBrewery = document.createElement('li')
+    const idValue    = myBreweriesList.children.length + 1
+    newBrewery.classList.add('my-brewery-list-element')
+    newBrewery.id = `my-brewery-${idValue}`
+    newBrewery.textContent = breweryName.textContent
+    myBreweriesList.appendChild(newBrewery)
+  })
+}
+
+
 // ⌛ Wait until document loaded to run initialization
 document.addEventListener('DOMContentLoaded', init)
-
-brewerySearchForm.addEventListener('submit', (e)=>{
-  e.preventDefault()
-  console.log(e.target)
-  cityFetch(brewerySearchForm.city.value)
-})

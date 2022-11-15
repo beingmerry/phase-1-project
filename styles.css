@@ -1,0 +1,23 @@
+li.brewery-list-element:hover {
+    background-color: aqua;
+    cursor: pointer;
+}
+
+#submit-search {
+    cursor: pointer;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+body {
+    margin: 1% 8%;
+    background-color:  lightgrey;
+    border: #333 1px dashed;
+  }
+
+body > header {
+    margin-bottom: 5%;
+  }
