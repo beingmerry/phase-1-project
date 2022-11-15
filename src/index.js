@@ -28,6 +28,7 @@ const init = () => {
   initBrewerySearchForm()
   initBreweryAddButton()
   cityFetch()
+  favoritesFetch()
 }
 
 const initBrewerySearchForm = () => {
@@ -43,14 +44,8 @@ const initBrewerySearchForm = () => {
 const initBreweryAddButton = () => {
   breweryAddButton.addEventListener('click', (e)=>{
     e.preventDefault()
-    const newBrewery = document.createElement('li')
-    const idValue    = myBreweriesList.children.length + 1
-    newBrewery.classList.add('my-brewery-list-element')
-    newBrewery.id = `my-brewery-${idValue}`
-    newBrewery.textContent = breweryName.textContent
-    myBreweriesList.appendChild(newBrewery)
-    
-
+    renderFavorite(breweryName.textContent)
+//need to add a check for if brewery already exists in favorites TODO
 
     postNewBrewery()
   })

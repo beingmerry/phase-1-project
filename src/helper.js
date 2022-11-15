@@ -16,6 +16,16 @@ const cityFetch = (city="Boulder") =>{
     })   
 }
 
+const favoritesFetch = () =>{
+    myBreweriesList.innerHTML = ""
+    fetch(`http://localhost:3000/myBreweryList`)
+    .then(response => response.json())
+    .then(myBreweries => myBreweries.forEach(brewery => {
+        console.log(brewery)
+        renderFavorite(brewery.name)}))
+    .catch((error)=> console.error(error))   
+}
+
 const loadSearchResults = (breweries) => {
     listBreweries.innerHTML = ""
     allBreweries = [...breweries]
@@ -46,8 +56,15 @@ const loadSearchResults = (breweries) => {
     brewerySite.href           = currentBrewery.url
 }
 
-const renderFavorites = () =>{
-
+const renderFavorite = (breweryName) =>{
+    const newBrewery = document.createElement('li')
+    //
+    const idValue    = myBreweriesList.children.length + 1
+    newBrewery.classList.add('my-brewery-list-element')
+    newBrewery.id = `my-brewery-${idValue}`
+    //brewery name is calling a global level variable and needs to call an argument
+    newBrewery.textContent = breweryName
+    myBreweriesList.appendChild(newBrewery)
 }
 
 const postNewBrewery = ()=>{
