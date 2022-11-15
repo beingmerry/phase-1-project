@@ -1,10 +1,25 @@
 // 🎯🟢 Fetch the breweries near you! Boulder by default
 
+const cityFetch = (city) =>{
+    fetch(`https://api.openbrewerydb.org/breweries?by_city=${city}`)
+    .then(response => response.json())
+    .then(breweries => {
+       if(breweries.length === 0){ 
+        listBreweries.textContent = "No Breweries Found"
+       } else {
+        loadSearchResults(breweries)
+       }
+    })
+    .catch((error)=> {
+        console.error(error)
+        listBreweries.textContent = "API SERVER ERROR"
+    })   
+}
 
 
 const loadSearchResults = (breweries) => {
+    listBreweries.innerHTML = ""
     allBreweries = [...breweries]
-    console.log(allBreweries)
     breweries.forEach(brewery => {  
       const newBreweryListElement = document.createElement('li')
       newBreweryListElement.textContent = brewery.name

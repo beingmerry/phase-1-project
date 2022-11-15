@@ -20,16 +20,13 @@ const brewerySearchForm = document.querySelector('#search-form')
 
 
 const init = () => {
-  fetch(`https://api.openbrewerydb.org/breweries?by_city=boulder`)
-  .then(response => response.json())
-  .then(breweries => loadSearchResults(breweries))
+  cityFetch("Boulder")  
 }
 // ⌛ Wait until document loaded to run initialization
 document.addEventListener('DOMContentLoaded', init)
 
-brewerySearchForm.addEventListener('submit', ()=>{
+brewerySearchForm.addEventListener('submit', (e)=>{
   e.preventDefault()
-  fetch(`https://api.openbrewerydb.org/breweries?by_city=${}`)
-  .then(response => response.json())
-  .then(breweries => loadSearchResults(breweries)
+  console.log(e.target)
+  cityFetch(brewerySearchForm.city.value)
 })
