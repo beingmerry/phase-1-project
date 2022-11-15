@@ -1,5 +1,6 @@
 // 🌐 Global Variables
 const listBreweries = document.querySelector('ol#list-breweries') 
+let allBreweries =[];
 // ⚠️ Warnings ⚠️
 // ⚠️ Helper functions are located in the helper.js file ⚠️
 // 🏗️ Current Tasks
@@ -10,6 +11,8 @@ const listBreweries = document.querySelector('ol#list-breweries')
 // 🎯 5. Build the "Add to my bar hop" function
 
 // 🥇 Initialize all scripts, forms, and event listeners
+
+
 const init = () => {
   fetch(`https://api.openbrewerydb.org/breweries?by_city=boulder`)
   .then(response => response.json())
