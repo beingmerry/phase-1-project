@@ -5,6 +5,8 @@ const breweryName = document.querySelector('#brewery-name');
 const breweryType = document.querySelector('#brewery-type');
 const breweryAdd = document.querySelector('#brewery-address');
 const brewerySite = document.querySelector('#brewery-url');
+const brewerySearchForm = document.querySelector('#search-form')
+
 // ⚠️ Warnings ⚠️
 // ⚠️ Helper functions are located in the helper.js file ⚠️
 // 🏗️ Current Tasks
@@ -24,3 +26,10 @@ const init = () => {
 }
 // ⌛ Wait until document loaded to run initialization
 document.addEventListener('DOMContentLoaded', init)
+
+brewerySearchForm.addEventListener('submit', ()=>{
+  e.preventDefault()
+  fetch(`https://api.openbrewerydb.org/breweries?by_city=${}`)
+  .then(response => response.json())
+  .then(breweries => loadSearchResults(breweries)
+})
