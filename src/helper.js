@@ -39,3 +39,14 @@ const renderBrewery = (brewery)=>{
     brewerySite.textContent    = brewery.website_url
     brewerySite.href           = brewery.website_url
 }
+
+const myBreweriesFetch = (newBrewery)=>{
+    fetch(`http://localhost:3000/myBreweryList`,{
+        method:`POST`,
+        headers: {
+            'Content-Type': 'application/json',
+            Accept : 'application/json'
+        },
+        body: JSON.stringify(newBrewery) 
+    })
+}

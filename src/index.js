@@ -47,6 +47,8 @@ const initBreweryAddButton = () => {
     newBrewery.id = `my-brewery-${idValue}`
     newBrewery.textContent = breweryName.textContent
     myBreweriesList.appendChild(newBrewery)
+    console.log(newBrewery)
+    myBreweriesFetch(newBrewery)
   })
 }
 
