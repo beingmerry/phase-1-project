@@ -10,28 +10,28 @@
 
 // 🥇 Initialize all scripts, forms, and event listeners
 const init = () => {
-  // 📕 All init function on this page, all other functions in helper.js
-  initBrewerySearchForm()
-  initBreweryAddButton()
-  cityFetch()
-  favoritesFetch()
-}
+    // 📕 All init function on this page, all other functions in helper.js
+    initBrewerySearchForm();
+    initBreweryAddButton();
+    cityFetch();
+    favoritesFetch();
+};
 // 🔽 On submit or click, search by city
 const initBrewerySearchForm = () => {
-  brewerySearchForm.addEventListener('submit', (e)=>{
-    e.preventDefault()
-    const city = brewerySearchForm.city.value
-    if (city !== ''){
-      cityFetch(city)
-    }
-  })
-}
+    brewerySearchForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const city = brewerySearchForm.city.value;
+        if (city !== "") {
+            cityFetch(city);
+        }
+    });
+};
 // 🔽 On button click, add brewery to favorites
 const initBreweryAddButton = () => {
-  breweryAddButton.addEventListener('click', (e)=>{
-    e.preventDefault()
-    postNewBrewery()
-  })
-}
+    breweryAddButton.addEventListener("click", (e) => {
+        e.preventDefault();
+        postNewBrewery();
+    });
+};
 // ⌛ Wait until document loaded to run initialization
-document.addEventListener('DOMContentLoaded', init)
+document.addEventListener("DOMContentLoaded", init);
