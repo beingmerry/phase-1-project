@@ -57,7 +57,6 @@ const loadSearchResults = (breweries) => {
 
 const renderFavorite = (breweryName) =>{
     const newBrewery = document.createElement('li')
-    //
     const idValue    = myBreweriesList.children.length + 1
     newBrewery.classList.add('my-brewery-list-element')
     newBrewery.id = `my-brewery-${idValue}`
@@ -79,7 +78,10 @@ const postNewBrewery = ()=>{
             body: JSON.stringify(currentBrewery) 
         })
         .then(response=> response.json())
-        .then(breweryAdded => renderFavorite(breweryName.textContent))
+        .then(breweryAdded => {
+            console.log(breweryAdded)
+            renderFavorite(breweryName.textContent)
+        })
         .catch(err => console.error(err))
     }
 }

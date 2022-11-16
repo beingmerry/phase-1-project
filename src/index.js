@@ -1,7 +1,8 @@
 // 🌐 Global Variables
-let allBreweries =[];
+let allBreweries   = [];
 let currentBrewery = {};
-let favorites = [];
+let favorites      = [];
+
 const listBreweries = document.querySelector('ol#list-breweries');
 
 const breweryName       = document.querySelector('#brewery-name');

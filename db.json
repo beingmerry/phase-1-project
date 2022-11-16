@@ -15,6 +15,30 @@
       "breweryFullAddress": "6035 Longbow Dr Unit 109, Boulder, Colorado 80301-3203",
       "url": "http://www.btmbrewing.com",
       "id": 2
+    },
+    {
+      "breweryApiId": "mountain-sun-pub-and-brewery-boulder",
+      "name": "Mountain Sun Pub and Brewery",
+      "breweryType": "BREWPUB",
+      "breweryFullAddress": "1535 Pearl St, Boulder, Colorado 80302-5408",
+      "url": "http://www.mountainsunpub.com",
+      "id": 3
+    },
+    {
+      "breweryApiId": "stein-brewing-company-boulder",
+      "name": "Stein Brewing Company",
+      "breweryType": "MICRO",
+      "breweryFullAddress": "2516 49th St, Boulder, Colorado 80301-2455",
+      "url": "http://www.jwellsbrewery.com",
+      "id": 4
+    },
+    {
+      "breweryApiId": "southern-sun-pub-and-brewery-boulder",
+      "name": "Southern Sun Pub and Brewery",
+      "breweryType": "BREWPUB",
+      "breweryFullAddress": "627 S Broadway St, Boulder, Colorado 80305-5944",
+      "url": "http://www.mountainsunpub.com",
+      "id": 5
     }
   ]
 }
