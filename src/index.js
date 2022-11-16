@@ -13,6 +13,8 @@ const init = () => {
     // 📕 All init function on this page, all other functions in helper.js
     initBrewerySearchForm();
     initBreweryAddButton();
+    initNextButton();
+    initPreviousButton();
     cityFetch();
     favoritesFetch();
 };
@@ -28,10 +30,37 @@ const initBrewerySearchForm = () => {
 };
 // 🔽 On button click, add brewery to favorites
 const initBreweryAddButton = () => {
-    breweryAddButton.addEventListener("click", (e) => {
-        e.preventDefault();
-        postNewBrewery();
-    });
+    breweryAddButton.addEventListener("click", (e) => postNewBrewery());
 };
+// 🔽 On button click, add brewery to favorites
+const initPreviousButton = () => {
+  previousPageButton.addEventListener("click", (e) => {
+    if (currentPage > 1) {
+      currentPage--
+      nextPageButton.removeAttribute("disabled")
+      const startElement = 10 * (currentPage - 1)
+      loadSearchResults([...allBreweries].splice(startElement, 10))
+      if (currentPage === 1) {
+        previousPageButton.setAttribute("disabled", "true")
+      }
+    }
+  });
+};
+// 🔽 On button click, add brewery to favorites
+const initNextButton = () => {
+  nextPageButton.addEventListener("click", (e) => {
+    if (currentPage < totalPages) {
+      currentPage++
+      previousPageButton.removeAttribute("disabled")
+      const startElement = 10 * (currentPage - 1)
+      loadSearchResults([...allBreweries].splice(startElement, 10))
+      if (currentPage === totalPages) {
+        nextPageButton.setAttribute("disabled", "true")
+      }
+    }
+  })
+}
+
+
 // ⌛ Wait until document loaded to run initialization
 document.addEventListener("DOMContentLoaded", init);

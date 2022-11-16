@@ -1,20 +1,29 @@
 // 🎯🟢 Fetch the breweries near you! Boulder by default
 
 const cityFetch = (city = "Boulder") => {
-    debugger
-    fetch(`https://api.openbrewerydb.org/breweries?by_city=${city}`)
+    fetch(`https://api.openbrewerydb.org/breweries?by_city=${city}&per_page=100`)
         .then((response) => response.json())
         .then((breweries) => {
-            console.log(breweries)
             if (breweries.length === 0) {
                 errorMessage.textContent = "No Breweries Found";
+                errorMessage.classList.toggle("hidden")
             } else {
-                loadSearchResults(breweries);
+                allBreweries = [...breweries];
+                activePageBreweries = [...allBreweries].splice(0,10)
+                totalPages = Math.ceil(allBreweries.length / 10)
+                previousPageButton.setAttribute("disabled", "true")
+                if (totalPages > 1) {
+                    nextPageButton.removeAttribute("disabled")
+                } else {
+                    nextPageButton.setAttribute("disabled", "true")
+                }
+                loadSearchResults(activePageBreweries);
             }
         })
         .catch((error) => {
             console.error(error);
             errorMessage.textContent = "API SERVER ERROR";
+            errorMessage.classList.toggle("hidden")
         });
     // add code to show city on screen
     const citySearched = document.querySelector('#city-searched')
@@ -34,17 +43,12 @@ const favoritesFetch = () => {
 
 const loadSearchResults = (breweries) => {
     breweryResultsTable.innerHTML = "";
-    allBreweries = [...breweries];
-
-    activePageBreweries = allBreweries[0]
-    console.log(activePageBreweries)
-
-    activePageBreweries.forEach((brewery) => renderBreweryRow(brewery));
+    breweries.forEach((brewery) => renderBreweryRow(brewery));
     renderBrewery(breweries[0]);
 };
 const renderBreweryRow = (brewery) => {
     const newBreweryRowElement = document.createElement("tr");
-    const firstElementResultNumber = 1 + 10 * currentPage;
+    const firstElementResultNumber = 1 + 10 * (currentPage - 1);
     newBreweryRowElement.classList.add("brewery-row-result");
     const tableRowCount = document.querySelectorAll(".brewery-row-result").length;
     const currentResultNumber = tableRowCount + firstElementResultNumber;
@@ -59,10 +63,11 @@ const renderBreweryRow = (brewery) => {
     `;
     newBreweryRowElement.id          = `${brewery.id}`
     newBreweryRowElement.classList.add('brewery-list-element')
-    // const detailButton = document.querySelector(`#see-brewery-details-${currentResultNumber}`)
+    breweryResultsTable.appendChild(newBreweryRowElement)
+    
+    const detailButton = document.querySelector(`#see-brewery-details-${currentResultNumber}`)
     // 🎯 The detail button is not being found at runtime ?? ⚠️
-    // detailButton.addEventListener('click', ()=>renderBrewery(brewery))
-    breweryResultsTable.appendChild(newBreweryRowElement);
+    detailButton.addEventListener('click', ()=>renderBrewery(brewery))
 };
 
 const renderBrewery = (brewery) => {

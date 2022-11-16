@@ -39,6 +39,14 @@
       "breweryFullAddress": "627 S Broadway St, Boulder, Colorado 80305-5944",
       "url": "http://www.mountainsunpub.com",
       "id": 5
+    },
+    {
+      "breweryApiId": "boulder-beer-on-walnut-boulder",
+      "name": "Boulder Beer On Walnut",
+      "breweryType": "BREWPUB",
+      "breweryFullAddress": "1123 Walnut St, Boulder, Colorado 80302-5116",
+      "url": null,
+      "id": 6
     }
   ]
 }

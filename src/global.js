@@ -2,7 +2,12 @@
 let allBreweries   = [];
 let currentBrewery = {};
 let favorites      = [];
-let currentPage    = 0
+let currentPage    = 1
+let totalPages     = 1
+
+// Page button constants
+const previousPageButton = document.querySelector('#search-previous-button')
+const nextPageButton     = document.querySelector('#search-next-button')
 
 // Error section constants
 const errorDiv     = document.querySelector('#error-container')
