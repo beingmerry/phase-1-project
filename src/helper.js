@@ -16,13 +16,12 @@ const cityFetch = (city="Boulder") =>{
     })   
 }
 
+// 🎯 Go to local db and grab favorites list, render at page load
 const favoritesFetch = () =>{
     myBreweriesList.innerHTML = ""
     fetch(`http://localhost:3000/myBreweryList`)
     .then(response => response.json())
-    .then(myBreweries => myBreweries.forEach(brewery => {
-        console.log(brewery)
-        renderFavorite(brewery.name)}))
+    .then(myBreweries => myBreweries.forEach(brewery => renderFavorite(brewery.name)))
     .catch((error)=> console.error(error))   
 }
 
@@ -69,15 +68,18 @@ const renderFavorite = (breweryName) =>{
 }
 
 const postNewBrewery = ()=>{
-    // 🎯 go through each of the elements in the currentFavorites list, and check if the added brewery already exists
-    // down the road, may 
-    // 💥 if (0 === favorites.filter(favorite => favorite==="Ben's Test Brewery").length)
-    fetch(`http://localhost:3000/myBreweryList`,{
-        method:`POST`,
-        headers: {
-            'Content-Type': 'application/json',
-            Accept : 'application/json'
-        },
-        body: JSON.stringify(currentBrewery) 
-    })
+    // 🎯🚩 Check current favorites before posting duplicate to db.json
+    if (0 === favorites.filter(favorite => favorite===currentBrewery.name).length) {
+        fetch(`http://localhost:3000/myBreweryList`,{
+            method:`POST`,
+            headers: {
+                'Content-Type': 'application/json',
+                Accept : 'application/json'
+            },
+            body: JSON.stringify(currentBrewery) 
+        })
+        .then(response=> response.json())
+        .then(breweryAdded => renderFavorite(breweryName.textContent))
+        .catch(err => console.error(err))
+    }
 }

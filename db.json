@@ -1,20 +1,19 @@
 {
   "myBreweryList": [
     {
-      "breweryApiId": "iowa-river-brewing-company-marshalltown",
-      "name": "Ben's Test Brewery",
-      "breweryType": "MICRO",
-      "breweryFullAddress": "107 N 1st St, Marshalltown, Iowa 50158-5803",
-      "url": "http://www.iowariverbrewing.com",
-      "bensCoolTestProperty": "There you are",
-      "id": 1
-    },
-    {
       "breweryApiId": "asher-brewing-co-boulder",
       "name": "Asher Brewing Co",
       "breweryType": "MICRO",
       "breweryFullAddress": "4699 Nautilus Ct S Ste 104, Boulder, Colorado 80301-5306",
       "url": "http://asherbrewing.com",
+      "id": 1
+    },
+    {
+      "breweryApiId": "beyond-the-mountain-brewing-company-boulder",
+      "name": "Beyond The Mountain Brewing Company",
+      "breweryType": "MICRO",
+      "breweryFullAddress": "6035 Longbow Dr Unit 109, Boulder, Colorado 80301-3203",
+      "url": "http://www.btmbrewing.com",
       "id": 2
     }
   ]

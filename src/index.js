@@ -26,12 +26,13 @@ const breweryAddButton = document.querySelector('#add-brewery-button')
 
 
 const init = () => {
+  // 📕 All init function on this page, all other functions in helper.js
   initBrewerySearchForm()
   initBreweryAddButton()
   cityFetch()
   favoritesFetch()
 }
-
+// 🔽 On submit or click, search by city
 const initBrewerySearchForm = () => {
   brewerySearchForm.addEventListener('submit', (e)=>{
     e.preventDefault()
@@ -41,17 +42,13 @@ const initBrewerySearchForm = () => {
     }
   })
 }
-
+// 🔽 On button click, add brewery to favorites
 const initBreweryAddButton = () => {
   breweryAddButton.addEventListener('click', (e)=>{
     e.preventDefault()
-    renderFavorite(breweryName.textContent)
-//need to add a check for if brewery already exists in favorites TODO
-
     postNewBrewery()
   })
 }
-
 
 // ⌛ Wait until document loaded to run initialization
 document.addEventListener('DOMContentLoaded', init)
