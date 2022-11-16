@@ -64,10 +64,14 @@ const renderFavorite = (breweryName) =>{
     newBrewery.id = `my-brewery-${idValue}`
     //brewery name is calling a global level variable and needs to call an argument
     newBrewery.textContent = breweryName
+    favorites = [...favorites, breweryName]
     myBreweriesList.appendChild(newBrewery)
 }
 
 const postNewBrewery = ()=>{
+    // 🎯 go through each of the elements in the currentFavorites list, and check if the added brewery already exists
+    // down the road, may 
+    // 💥 if (0 === favorites.filter(favorite => favorite==="Ben's Test Brewery").length)
     fetch(`http://localhost:3000/myBreweryList`,{
         method:`POST`,
         headers: {
