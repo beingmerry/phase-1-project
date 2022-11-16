@@ -1,55 +1,22 @@
-@counter-style beer-emoji {
-	system: cyclic;
-	symbols: "🍺" "🍻" "🥳";
-	suffix: "| ";
+.hidden {
+  display: none;
 }
 
-@counter-style like-emoji {
-	system: cyclic;
-	symbols: "♥️" "⌚" "🚩";
-	suffix: "| ";
+#error-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 156, 156, 0.8);
+  z-index: 9999;
 }
 
-li.brewery-list-element:hover {
-    background-color: aqua;
-    border-bottom: 1px solid black;
+#error-message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 156, 156, 0.8);
+  z-index: 9999;
 }
-
-li.brewery-list-element {
-    list-style-type: beer-emoji;
-    border-bottom: 1px solid gray;
-    padding-bottom: 5px;
-    cursor: pointer;
-}
-
-li.brewery-list-element {
-  list-style-type: beer-emoji;
-  border-bottom: 1px solid gray;
-  padding-bottom: 5px;
-  cursor: pointer;
-}
-
-li.my-brewery-list-element {
-  list-style-type: like-emoji;
-  border-bottom: 1px solid gray;
-  padding-bottom: 5px;
-}
-/* 
-#submit-search {
-    cursor: pointer;
-    height: 30px;
-    line-height: 30px;
-    padding: 0 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-} */
-
-body {
-    margin: 1% 8%;
-    background-color:  lightgrey;
-    border: #333 1px dashed;
-  }
-
-body > header {
-    margin-bottom: 5%;
-  }
