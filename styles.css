@@ -34,7 +34,7 @@ li.my-brewery-list-element {
   border-bottom: 1px solid gray;
   padding-bottom: 5px;
 }
-
+/* 
 #submit-search {
     cursor: pointer;
     height: 30px;
@@ -42,7 +42,7 @@ li.my-brewery-list-element {
     padding: 0 10px;
     border: 1px solid #ccc;
     border-radius: 3px;
-}
+} */
 
 body {
     margin: 1% 8%;
