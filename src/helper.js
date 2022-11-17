@@ -54,7 +54,7 @@ const renderBreweryRow = (brewery) => {
     const currentResultNumber = tableRowCount + firstElementResultNumber;
     const phoneNumberCheck = (brewery.phone !== null ? brewery.phone : "N/A")
     newBreweryRowElement.innerHTML = `
-        <td><button id="see-brewery-details-${currentResultNumber}">➕</button></td>
+        <td><button id="see-brewery-details-${currentResultNumber}">ℹ️</button></td>
         <td>${currentResultNumber}</td>
         <td>${brewery.name}</td>
         <td>${brewery.brewery_type}</td>
@@ -102,6 +102,7 @@ const postNewBrewery = () => {
         0 ===
         favorites.filter((favorite) => favorite === currentBrewery.name).length
     ) {
+        renderFavorite(breweryName.textContent)
         fetch(`http://localhost:3000/myBreweryList`, {
             method: `POST`,
             headers: {
@@ -111,7 +112,10 @@ const postNewBrewery = () => {
             body: JSON.stringify(currentBrewery),
         })
             .then((response) => response.json())
-            .then((breweryAdded) => renderFavorite(breweryName.textContent))
-            .catch((err) => console.error(err));
+            .then((breweryAdded) => breweryAdded)
+            .catch((err) => {
+                console.log("No server at localhost:3000, rendering locally only...")
+
+            });
     }
 };

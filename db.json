@@ -9,44 +9,28 @@
       "id": 1
     },
     {
-      "breweryApiId": "beyond-the-mountain-brewing-company-boulder",
-      "name": "Beyond The Mountain Brewing Company",
-      "breweryType": "MICRO",
-      "breweryFullAddress": "6035 Longbow Dr Unit 109, Boulder, Colorado 80301-3203",
-      "url": "http://www.btmbrewing.com",
+      "breweryApiId": "bru-handbuilt-ales-and-eats-boulder",
+      "name": "BRU Handbuilt Ales and Eats",
+      "breweryType": "BREWPUB",
+      "breweryFullAddress": "5290 Arapahoe Ave, Boulder, Colorado 80303-1269",
+      "url": "http://www.bruboulder.com",
       "id": 2
     },
     {
-      "breweryApiId": "mountain-sun-pub-and-brewery-boulder",
-      "name": "Mountain Sun Pub and Brewery",
+      "breweryApiId": "west-flanders-brewing-co-boulder",
+      "name": "West Flanders Brewing Co",
       "breweryType": "BREWPUB",
-      "breweryFullAddress": "1535 Pearl St, Boulder, Colorado 80302-5408",
-      "url": "http://www.mountainsunpub.com",
+      "breweryFullAddress": "1125 Pearl St, Boulder, Colorado 80302-5103",
+      "url": "http://www.wfbrews.com",
       "id": 3
     },
     {
-      "breweryApiId": "stein-brewing-company-boulder",
-      "name": "Stein Brewing Company",
-      "breweryType": "MICRO",
-      "breweryFullAddress": "2516 49th St, Boulder, Colorado 80301-2455",
-      "url": "http://www.jwellsbrewery.com",
-      "id": 4
-    },
-    {
-      "breweryApiId": "southern-sun-pub-and-brewery-boulder",
-      "name": "Southern Sun Pub and Brewery",
-      "breweryType": "BREWPUB",
-      "breweryFullAddress": "627 S Broadway St, Boulder, Colorado 80305-5944",
-      "url": "http://www.mountainsunpub.com",
-      "id": 5
-    },
-    {
-      "breweryApiId": "boulder-beer-on-walnut-boulder",
-      "name": "Boulder Beer On Walnut",
-      "breweryType": "BREWPUB",
-      "breweryFullAddress": "1123 Walnut St, Boulder, Colorado 80302-5116",
+      "breweryApiId": "upslope-brewing-company-boulder",
+      "name": "Upslope Brewing Company",
+      "breweryType": "PLANNING",
+      "breweryFullAddress": "null, Boulder, Colorado 80301",
       "url": null,
-      "id": 6
+      "id": 4
     }
   ]
 }
