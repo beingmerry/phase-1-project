@@ -22,8 +22,8 @@ const cityFetch = (city = "Boulder") => {
         })
         .catch((error) => {
             console.error(error);
-            errorMessage.textContent = "API SERVER ERROR";
-            errorMessage.classList.toggle("hidden")
+            errorMessage.textContent = "⛔ API SERVER ERROR";
+            showErrorMessage()
         });
     // add code to show city on screen
     const citySearched = document.querySelector('#city-searched')
@@ -42,17 +42,20 @@ const favoritesFetch = () => {
         .catch((error) => {
             serverStateGood = false
             console.warn("⚠️ - No Server Detected at http://localhost:3000, running in local mode - favorites will not persist.")
-            errorDiv.classList.remove("hidden")
-            errorDiv.classList.add("visible")
             errorMessage.textContent = "⚠️ - No Server Detected at http://localhost:3000, running in local mode - favorites will not persist."
-            setTimeout(() => {
-                errorDiv.classList.add("hidden")
-                errorDiv.classList.remove("visible")
-            }, 5000)
+            showErrorMessage()
         });
     }
 };
 
+const showErrorMessage = () => {
+    errorDiv.classList.remove("hidden")
+    errorDiv.classList.add("visible")
+    setTimeout(() => {
+        errorDiv.classList.add("hidden")
+        errorDiv.classList.remove("visible")
+    }, 5000)
+}
 const loadSearchResults = (breweries) => {
     breweryResultsTable.innerHTML = "";
     breweries.forEach((brewery) => renderBreweryRow(brewery));
