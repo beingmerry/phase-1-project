@@ -67,12 +67,16 @@ const renderBreweryRow = (brewery) => {
     newBreweryRowElement.classList.add("brewery-row-result");
     const tableRowCount = document.querySelectorAll(".brewery-row-result").length;
     const currentResultNumber = tableRowCount + firstElementResultNumber;
-    const phoneNumberCheck = (brewery.phone !== null ? brewery.phone : "N/A")
+    let phoneNumberCheck = "N/A"
+    if (brewery.phone !== null) {
+        phoneNumberCheck = `(${brewery.phone.slice(0,3)}) ${brewery.phone.slice(3,6)}-${brewery.phone.slice(6)}`
+    }
     newBreweryRowElement.innerHTML = `
+        <td><button id="quick-add-brewery-${currentResultNumber}">➕</button></td>
         <td><button id="see-brewery-details-${currentResultNumber}">ℹ️</button></td>
         <td>${currentResultNumber}</td>
         <td>${brewery.name}</td>
-        <td>${brewery.brewery_type}</td>
+        <td class="brewery-type-data">${brewery.brewery_type}</td>
         <td>${brewery.street}, ${brewery.city}, ${brewery.state} ${brewery.postal_code}</td>
         <td>${phoneNumberCheck}</td>
     `;
@@ -80,15 +84,20 @@ const renderBreweryRow = (brewery) => {
     newBreweryRowElement.classList.add('brewery-list-element')
     breweryResultsTable.appendChild(newBreweryRowElement)
     
+    const addButton    = document.querySelector(`#quick-add-brewery-${currentResultNumber}`)
     const detailButton = document.querySelector(`#see-brewery-details-${currentResultNumber}`)
-    // 🎯 The detail button is not being found at runtime ?? ⚠️
-    detailButton.addEventListener('click', ()=>renderBrewery(brewery))
+    addButton.addEventListener('click',    ()=> postNewBrewery(brewery))
+    detailButton.addEventListener('click', ()=> renderBrewery(brewery))
 };
 
 const renderBrewery = (brewery) => {
+    const oldActiveRow = document.querySelector("tr.active")
+    if (oldActiveRow !== null) {oldActiveRow.classList.remove("active")}
+    const newActiveRow = document.querySelector(`#${brewery.id}`)
+    newActiveRow.classList.add("active")
     currentBrewery.breweryApiId = brewery.id;
     currentBrewery.name = brewery.name;
-    currentBrewery.breweryType = brewery.brewery_type.toUpperCase();
+    currentBrewery.breweryType = brewery.brewery_type;
     currentBrewery.breweryFullAddress = `${brewery.street}, ${brewery.city}, ${brewery.state} ${brewery.postal_code}`;
     currentBrewery.url = brewery.website_url;
 
@@ -102,12 +111,9 @@ const renderBrewery = (brewery) => {
 
 const renderFavorite = (brewery) => {
     const newBrewery = document.createElement("li");
-
-    //const idValue = myBreweriesList.children.length + 1;
     const idValue = brewery.id
     newBrewery.classList.add("my-brewery-list-element");
     newBrewery.id = `my-brewery-${idValue}`;
-    //brewery name is calling a global level variable and needs to call an argument
     newBrewery.textContent = `${brewery.name}   ` ;
     favorites = [...favorites, brewery.name];
     myBreweriesList.appendChild(newBrewery);
@@ -122,21 +128,24 @@ const renderFavorite = (brewery) => {
             fetch(`http://localhost:3000/myBreweryList/${idValue}`, {
                 method: `DELETE`,
             })
-            .then(response => response.json())
-            .then((data)=>{
+            .then(response => console.log(response.json()))
+            .then(() =>{
+                favorites.splice(favorites.indexOf(brewery.name), 1)
                 myBreweriesList.removeChild(newBrewery)
             })
         } else {
+            favorites.splice(favorites.indexOf(brewery.name), 1)
             myBreweriesList.removeChild(newBrewery)
         }       
     })
 };
 
-const postNewBrewery = () => {
-    // 🎯🚩 Check current favorites before posting duplicate to db.json
+const postNewBrewery = (newBrewery = currentBrewery) => {
+    console.log(newBrewery)
+    // 🎯🟢 Check current favorites before posting duplicate to db.json
     if (
         0 ===
-        favorites.filter((favorite) => favorite === currentBrewery.name).length
+        favorites.filter((favorite) => favorite === newBrewery.name).length
     ) {
         if(serverStateGood){
             fetch(`http://localhost:3000/myBreweryList`, {
@@ -145,13 +154,13 @@ const postNewBrewery = () => {
                     "Content-Type": "application/json",
                     Accept: "application/json",
                 },
-                body: JSON.stringify(currentBrewery),
+                body: JSON.stringify(newBrewery),
             })
             .then((response) => response.json())
             .then((breweryAdded) => renderFavorite(breweryAdded))
         } else {
-            console.log("No server at localhost:3000, rendering locally only...")
-            renderFavorite(currentBrewery)
+            console.log("No server at http://localhost:3000, rendering locally only...")
+            renderFavorite(newBrewery)
         }    
     }
 };
