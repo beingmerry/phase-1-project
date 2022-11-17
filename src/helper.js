@@ -33,12 +33,19 @@ const cityFetch = (city = "Boulder") => {
 // 🎯 Go to local db and grab favorites list, render at page load
 const favoritesFetch = () => {
     myBreweriesList.innerHTML = "";
+    if(serverStateGood){
     fetch(`http://localhost:3000/myBreweryList`)
         .then((response) => response.json())
         .then((myBreweries) =>
-            myBreweries.forEach((brewery) => renderFavorite(brewery.name))
+            myBreweries.forEach((brewery) => renderFavorite(brewery))
         )
-        .catch((error) => console.error(error));
+        .catch((error) => {
+            serverStateGood = false
+            console.warn("No Server Detected at localhost:3000, running in local mode")
+            errorDiv.classList.remove("hidden")
+            errorMessage.textContent = "No Server Detected at localhost:3000, running in local mode - favorites will not persist."
+        });
+    }
 };
 
 const loadSearchResults = (breweries) => {
@@ -85,15 +92,36 @@ const renderBrewery = (brewery) => {
     brewerySite.href = currentBrewery.url;
 };
 
-const renderFavorite = (breweryName) => {
+const renderFavorite = (brewery) => {
     const newBrewery = document.createElement("li");
-    const idValue = myBreweriesList.children.length + 1;
+
+    //const idValue = myBreweriesList.children.length + 1;
+    const idValue = brewery.id
     newBrewery.classList.add("my-brewery-list-element");
     newBrewery.id = `my-brewery-${idValue}`;
     //brewery name is calling a global level variable and needs to call an argument
-    newBrewery.textContent = breweryName;
-    favorites = [...favorites, breweryName];
+    newBrewery.textContent = `${brewery.name}   ` ;
+    favorites = [...favorites, brewery.name];
     myBreweriesList.appendChild(newBrewery);
+
+    const breweryDeleteBtn = document.createElement("button")
+    breweryDeleteBtn.id = `delete-btn-${idValue}`
+    breweryDeleteBtn.classList.add = "btn"
+    breweryDeleteBtn.textContent = "X"
+    newBrewery.appendChild(breweryDeleteBtn)
+    breweryDeleteBtn.addEventListener('click', ()=>{
+        if(serverStateGood){
+            fetch(`http://localhost:3000/myBreweryList/${idValue}`, {
+                method: `DELETE`,
+            })
+            .then(response => response.json())
+            .then((data)=>{
+                myBreweriesList.removeChild(newBrewery)
+            })
+        } else {
+            myBreweriesList.removeChild(newBrewery)
+        }       
+    })
 };
 
 const postNewBrewery = () => {
@@ -102,20 +130,20 @@ const postNewBrewery = () => {
         0 ===
         favorites.filter((favorite) => favorite === currentBrewery.name).length
     ) {
-        renderFavorite(breweryName.textContent)
-        fetch(`http://localhost:3000/myBreweryList`, {
-            method: `POST`,
-            headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json",
-            },
-            body: JSON.stringify(currentBrewery),
-        })
+        if(serverStateGood){
+            fetch(`http://localhost:3000/myBreweryList`, {
+                method: `POST`,
+                headers: {
+                    "Content-Type": "application/json",
+                    Accept: "application/json",
+                },
+                body: JSON.stringify(currentBrewery),
+            })
             .then((response) => response.json())
-            .then((breweryAdded) => breweryAdded)
-            .catch((err) => {
-                console.log("No server at localhost:3000, rendering locally only...")
-
-            });
+            .then((breweryAdded) => renderFavorite(breweryAdded))
+        } else {
+            console.log("No server at localhost:3000, rendering locally only...")
+            renderFavorite(currentBrewery)
+        }    
     }
 };

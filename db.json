@@ -1,36 +1,3 @@
 {
-  "myBreweryList": [
-    {
-      "breweryApiId": "asher-brewing-co-boulder",
-      "name": "Asher Brewing Co",
-      "breweryType": "MICRO",
-      "breweryFullAddress": "4699 Nautilus Ct S Ste 104, Boulder, Colorado 80301-5306",
-      "url": "http://asherbrewing.com",
-      "id": 1
-    },
-    {
-      "breweryApiId": "bru-handbuilt-ales-and-eats-boulder",
-      "name": "BRU Handbuilt Ales and Eats",
-      "breweryType": "BREWPUB",
-      "breweryFullAddress": "5290 Arapahoe Ave, Boulder, Colorado 80303-1269",
-      "url": "http://www.bruboulder.com",
-      "id": 2
-    },
-    {
-      "breweryApiId": "west-flanders-brewing-co-boulder",
-      "name": "West Flanders Brewing Co",
-      "breweryType": "BREWPUB",
-      "breweryFullAddress": "1125 Pearl St, Boulder, Colorado 80302-5103",
-      "url": "http://www.wfbrews.com",
-      "id": 3
-    },
-    {
-      "breweryApiId": "upslope-brewing-company-boulder",
-      "name": "Upslope Brewing Company",
-      "breweryType": "PLANNING",
-      "breweryFullAddress": "null, Boulder, Colorado 80301",
-      "url": null,
-      "id": 4
-    }
-  ]
+  "myBreweryList": []
 }

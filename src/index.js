@@ -18,6 +18,8 @@ const init = () => {
     cityFetch();
     favoritesFetch();
 };
+
+
 // 🔽 On submit or click, search by city
 const initBrewerySearchForm = () => {
     brewerySearchForm.addEventListener("submit", (e) => {

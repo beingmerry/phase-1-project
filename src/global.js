@@ -5,6 +5,9 @@ let favorites      = [];
 let currentPage    = 1
 let totalPages     = 1
 
+//Server State Check
+let serverStateGood = true 
+
 // Page button constants
 const previousPageButton = document.querySelector('#search-previous-button')
 const nextPageButton     = document.querySelector('#search-next-button')
