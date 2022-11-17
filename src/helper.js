@@ -41,9 +41,14 @@ const favoritesFetch = () => {
         )
         .catch((error) => {
             serverStateGood = false
-            console.warn("No Server Detected at localhost:3000, running in local mode")
+            console.warn("⚠️ - No Server Detected at http://localhost:3000, running in local mode - favorites will not persist.")
             errorDiv.classList.remove("hidden")
-            errorMessage.textContent = "No Server Detected at localhost:3000, running in local mode - favorites will not persist."
+            errorDiv.classList.add("visible")
+            errorMessage.textContent = "⚠️ - No Server Detected at http://localhost:3000, running in local mode - favorites will not persist."
+            setTimeout(() => {
+                errorDiv.classList.add("hidden")
+                errorDiv.classList.remove("visible")
+            }, 5000)
         });
     }
 };

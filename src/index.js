@@ -34,7 +34,7 @@ const initBrewerySearchForm = () => {
 const initBreweryAddButton = () => {
     breweryAddButton.addEventListener("click", (e) => postNewBrewery());
 };
-// 🔽 On button click, add brewery to favorites
+// 🔽 On button click, change shown elements by index - 10
 const initPreviousButton = () => {
   previousPageButton.addEventListener("click", (e) => {
     if (currentPage > 1) {
@@ -48,7 +48,7 @@ const initPreviousButton = () => {
     }
   });
 };
-// 🔽 On button click, add brewery to favorites
+// 🔽 On button click, change shown elements by index + 10
 const initNextButton = () => {
   nextPageButton.addEventListener("click", (e) => {
     if (currentPage < totalPages) {
