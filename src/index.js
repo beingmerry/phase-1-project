@@ -32,7 +32,7 @@ const initBrewerySearchForm = () => {
 };
 // 🔽 On button click, add brewery to favorites
 const initBreweryAddButton = () => {
-    breweryAddButton.addEventListener("click", (e) => postNewBrewery(e));
+    breweryAddButton.addEventListener("click", () => postNewBrewery());
 };
 // 🔽 On button click, change shown elements by index - 10
 const initPreviousButton = () => {

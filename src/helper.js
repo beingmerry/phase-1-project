@@ -141,7 +141,6 @@ const renderFavorite = (brewery) => {
 };
 
 const postNewBrewery = (newBrewery = currentBrewery) => {
-    console.log(newBrewery)
     // 🎯🟢 Check current favorites before posting duplicate to db.json
     if (
         0 ===
