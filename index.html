@@ -13,9 +13,13 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="styles.css">
+    
+    <!-- 🎯Attempting to add confetti to click of Activate Party mode (left-> right only) -->
   </head>
+  
   <body>
-    <header id="header-container">
+    
+    <header id="header-container" class="container-fluid">
       <div class="row">
         <div class="col-sm">
           <h1>🦘🍺🥳 KangaBrew</h1>
@@ -25,18 +29,19 @@
         <div class="col-sm ms-auto">
           <div class="form-check form-switch">
             <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
-            <label class="form-check-label" for="flexSwitchCheckDefault">The Day ☀️ / Night 🌑 Mode Option will go here</label>
+            <label class="form-check-label" for="flexSwitchCheckDefault">Activate PARTY Mode?!🥳</label>
           </div>
         </div>
       </div>
     </header>
+    <canvas id="world" hidden></canvas>
     <div id="error-container" class="hidden">
       <h2 id="error-message">Placeholder text for error message at runtime</h2>
     </div>
     <div class="row">
-      <div class ="col-md-3 col-sm-4 col-auto">
+      <div class ="col-lg-3 col-md-4 col-sm-5 col-auto">
         <div id="search-container" class="row">
-          <h2 id="search-header">Search</h2>
+          <h2 id="search-header"><u>Search</u></h2>
           <form id="search-form">
             <label for="city-search">City</label>
             <input id="city-search" type="text" placeholder="City" name="city">
@@ -44,7 +49,7 @@
           </form>
         </div>
         <div id="navigate-results-buttons" class="row">
-          <h3 for="city-searched"><u>Current City Filter</u></h3>
+          <h3 for="city-searched"><u>Current City</u></h3>
           <h4 id="city-searched"></h4>
           <button id="search-previous-button" class="btn" type="button" disabled>⬅️ Previous Page</button>
           <button id="search-next-button" class="btn" type="button" disabled>➡️ Next Page</button>
@@ -57,23 +62,23 @@
           <button id="add-brewery-button" type="button" class="btn btn-primary">Add</button>
         </div>
         <div id="my-breweries-container" class="row">
-          <h1 id="my-breweries-header">My Breweries</h1>
+          <h1 id="my-breweries-header"><u>My Breweries</u></h1>
           <ol id="my-breweries-list">
           </ol>
         </div>
       </div>
-      <div id="results-container" class="col-md-9 col-auto">
-        <h3 id="results-header-h1">Search Results</h3>
+      <div id="results-container" class="col-lg-9 col-md-8 col-sm-7 col-auto">
+        <h2 id="results-header-h1"><u>Search Results</u></h2>
         <table class="table table-striped table-bordered table-hover table-responsive">
           <thead>
             <tr id="table-header">
-              <th scope="col" id="table-header-result-add" class="">Quick Add</th>
-              <th scope="col" id="table-header-result-details" class="">See Details</th>
-              <th scope="col" id="table-header-result-number"  class="">Result #</th>
-              <th scope="col" id="table-header-result-name"    class="">Brewery</th>
-              <th scope="col" id="table-header-result-type"    class="">Type</th>
-              <th scope="col" id="table-header-result-address" class="">Address</th>
-              <th scope="col" id="table-header-result-phone"   class="">Phone</th>
+              <th scope="col" id="table-header-result-add"     class="d-table-cell">Quick Add</th>
+              <th scope="col" id="table-header-result-details" class="d-table-cell">See Details</th>
+              <th scope="col" id="table-header-result-number"  class="d-table-cell">Result</th>
+              <th scope="col" id="table-header-result-name"    class="d-table-cell">Brewery</th>
+              <th scope="col" id="table-header-result-type"    class="d-none d-md-table-cell">Type</th>
+              <th scope="col" id="table-header-result-address" class="d-none d-lg-table-cell">Address</th>
+              <th scope="col" id="table-header-result-phone"   class="d-table-cell">Phone</th>
             </tr>
           </thead>
           <tbody id="results-table-body" class="">
@@ -82,13 +87,16 @@
         </table>
       </div>
     </div>
-    <footer id="footer-container" class="h-100 d-flex align-items-center justify-content-center">
-      <h5>2022 | 🏔️ Ben & Noah 🎯 | Flatiron Web App Dev | Phase 1 Project</h5>
+    <footer id="footer-container" class="">
+      <h5 class="row d-flex justify-content-center">🏔️ Ben & Noah 🎯</h5>
+      <h6 class="row d-flex justify-content-center">2022 | Flatiron Web App Dev | Phase 1 Project</h6>
     </footer>
   </body>
   <!-- load order matters, 🌐global.js variables, then 🔨 helper.js functions, then 
-  ⌛index.js for forms behavior and initial render calls -->
+  ⌛index.js for forms behavior and initial render calls --> 
   <script src="./src/global.js"></script>
   <script src="./src/helper.js"></script>
   <script src="./src/index.js"></script>
+  <!-- 🎊 Trying to get confetti party to work -->
+  <script src="./confetti/confetti.js"></script>
 </html> 

@@ -15,10 +15,24 @@ const init = () => {
     initBreweryAddButton();
     initNextButton();
     initPreviousButton();
+    initPartyToggleButton();
     cityFetch();
     favoritesFetch();
 };
 
+const initPartyToggleButton = () => {
+  
+  const partyToggleButton = document.querySelector('#flexSwitchCheckDefault')
+  const confettiElement = document.querySelector('#world')
+  partyToggleButton.checked = false
+  partyToggleButton.addEventListener('click', () => {
+    if (partyToggleButton.checked) {
+      confettiElement.removeAttribute("hidden")
+    } else {
+      confettiElement.setAttribute("hidden", "")
+    }
+  })
+}
 
 // 🔽 On submit or click, search by city
 const initBrewerySearchForm = () => {

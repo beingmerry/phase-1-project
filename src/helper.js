@@ -41,8 +41,8 @@ const favoritesFetch = () => {
         )
         .catch((error) => {
             serverStateGood = false
-            console.warn("⚠️ - No Server Detected at http://localhost:3000, running in local mode - favorites will not persist.")
-            errorMessage.textContent = "⚠️ - No Server Detected at http://localhost:3000, running in local mode - favorites will not persist."
+            console.warn("No Server Detected at http://localhost:3000, running in local mode - favorites will not persist.")
+            errorMessage.textContent = "⚠️ No Server Detected at http://localhost:3000, running in local mode - favorites will not persist."
             showErrorMessage()
         });
     }
@@ -76,8 +76,8 @@ const renderBreweryRow = (brewery) => {
         <td><button id="see-brewery-details-${currentResultNumber}">ℹ️</button></td>
         <td>${currentResultNumber}</td>
         <td>${brewery.name}</td>
-        <td class="brewery-type-data">${brewery.brewery_type}</td>
-        <td>${brewery.street}, ${brewery.city}, ${brewery.state} ${brewery.postal_code}</td>
+        <td class="brewery-type-data d-none d-md-table-cell">${brewery.brewery_type}</td>
+        <td class="d-none d-lg-table-cell">${brewery.street}, ${brewery.city}, ${brewery.state} ${brewery.postal_code}</td>
         <td>${phoneNumberCheck}</td>
     `;
     newBreweryRowElement.id          = `${brewery.id}`
@@ -86,7 +86,14 @@ const renderBreweryRow = (brewery) => {
     
     const addButton    = document.querySelector(`#quick-add-brewery-${currentResultNumber}`)
     const detailButton = document.querySelector(`#see-brewery-details-${currentResultNumber}`)
-    addButton.addEventListener('click',    ()=> postNewBrewery(brewery))
+    const breweryForDbJson = {
+        breweryApiId: brewery.id,
+        name: brewery.name,
+        breweryType: brewery.brewery_type,
+        breweryFullAddress: `${brewery.street}, ${brewery.city}, ${brewery.state} ${brewery.postal_code}`,
+        url: brewery.url
+    }
+    addButton.addEventListener('click',    ()=> postNewBrewery(breweryForDbJson))
     detailButton.addEventListener('click', ()=> renderBrewery(brewery))
 };
 
@@ -102,7 +109,7 @@ const renderBrewery = (brewery) => {
     currentBrewery.url = brewery.website_url;
 
     breweryName.dataset.id = currentBrewery.breweryApiId;
-    breweryName.textContent = currentBrewery.name;
+    breweryName.innerHTML = `<u>${currentBrewery.name}</u>`;
     breweryType.textContent = currentBrewery.breweryType;
     breweryAddress.textContent = currentBrewery.breweryFullAddress;
     brewerySite.textContent = currentBrewery.url;
