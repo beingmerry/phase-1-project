@@ -5,27 +5,23 @@ const cityFetch = (city = "Boulder") => {
     fetch(`https://api.openbrewerydb.org/breweries?by_city=${city}&per_page=50`)
         .then((response) => response.json())
         .then((breweries) => {
-            if (breweries.length === 0) {
-                errorMessage.textContent = "No Breweries Found";
-                errorMessage.classList.toggle("hidden")
+            allBreweries = [...breweries];
+            activePageBreweries = [...allBreweries].splice(0,10)
+            resultsCount = allBreweries.length
+            totalPages = Math.ceil(resultsCount / 10)
+            if (resultsCount === 0) {
+                breweryResultsCount.textContent = 'No results, check spelling.'
             } else {
-                allBreweries = [...breweries];
-                activePageBreweries = [...allBreweries].splice(0,10)
-                resultsCount = allBreweries.length
-                totalPages = Math.ceil(resultsCount / 10)
-                if (resultsCount === 0) {
-                    breweryResultsCount.textContent = 'No results'
-                } else {
-                    breweryResultsCount.textContent = `${resultsCount} breweries found!`
-                }
-                previousPageButton.setAttribute("disabled", "true")
-                if (totalPages > 1) {
-                    nextPageButton.removeAttribute("disabled")
-                } else {
-                    nextPageButton.setAttribute("disabled", "true")
-                }
-                loadSearchResults(activePageBreweries);
+                breweryResultsCount.textContent = `${resultsCount} breweries found!`
             }
+            previousPageButton.setAttribute("disabled", "true")
+            if (totalPages > 1) {
+                nextPageButton.removeAttribute("disabled")
+            } else {
+                nextPageButton.setAttribute("disabled", "true")
+            }
+            loadSearchResults(activePageBreweries);
+        
         })
         .catch((error) => {
             console.error(error);
@@ -64,7 +60,7 @@ const showErrorMessage = () => {
     }, 5000)
 }
 const loadSearchResults = (breweries) => {
-    breweryResultsTable.innerHTML = "";
+    breweryResultsTable.innerHTML = ""
     breweries.forEach((brewery) => renderBreweryRow(brewery));
     renderBrewery(breweries[0]);
 };
