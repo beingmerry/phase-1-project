@@ -1,5 +1,4 @@
 // 🎯🟢 Fetch the breweries near you! Boulder by default
-
 const cityFetch = (city = "Boulder") => {
     currentPage = 1
     fetch(`https://api.openbrewerydb.org/breweries?by_city=${city}&per_page=100`)
@@ -32,7 +31,6 @@ const cityFetch = (city = "Boulder") => {
     const citySearched = document.querySelector('#city-searched')
     citySearched.textContent = city
 };
-
 // 🎯 Go to local db and grab favorites list, render at page load
 const favoritesFetch = () => {
     myBreweriesList.innerHTML = "";
@@ -62,7 +60,6 @@ const favoritesFetch = () => {
         });
     }
 };
-
 const showErrorMessage = () => {
     errorDiv.classList.remove("hidden")
     errorDiv.classList.add("visible")
@@ -76,8 +73,6 @@ const loadSearchResults = (breweries) => {
     breweries.forEach((brewery) => renderBreweryRow(brewery));
     renderBrewery(breweries[0]);
 };
-
-
 const renderFavorite = (brewery) => {
     const newBrewery = document.createElement("li");
     const idValue = brewery.id
