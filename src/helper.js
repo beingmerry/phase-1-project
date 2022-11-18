@@ -99,7 +99,8 @@ const renderFavorite = (brewery) => {
             })
         } else if (webStorageMode){
             favorites.splice(favorites.indexOf(brewery.name), 1)
-            localFavoriteBreweries.filter(el => el.name !== brewery.name)
+            localFavoriteBreweries = localFavoriteBreweries.filter(el => el.name !== brewery.name) 
+            debugger
             console.log(localFavoriteBreweries)
             myBreweriesList.removeChild(newBrewery)
             localStorage.setItem("localFavoriteBreweries", JSON.stringify(localFavoriteBreweries))
