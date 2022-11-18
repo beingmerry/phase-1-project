@@ -4,6 +4,7 @@ let currentBrewery = {};
 let favorites      = [];
 let currentPage    = 1
 let totalPages     = 1
+let resultsCount   = 0
 
 //Server State Check
 let serverStateGood = true 
@@ -18,6 +19,7 @@ const errorMessage = document.querySelector('#error-message')
 
 // Results section constants
 const breweryResultsTable = document.querySelector('tbody#results-table-body');
+const breweryResultsCount = document.querySelector('#results-value');
 
 // Detail section constants
 const breweryName       = document.querySelector('#brewery-name');

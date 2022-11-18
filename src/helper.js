@@ -1,7 +1,8 @@
 // 🎯🟢 Fetch the breweries near you! Boulder by default
 
 const cityFetch = (city = "Boulder") => {
-    fetch(`https://api.openbrewerydb.org/breweries?by_city=${city}&per_page=100`)
+    currentPage = 1
+    fetch(`https://api.openbrewerydb.org/breweries?by_city=${city}&per_page=50`)
         .then((response) => response.json())
         .then((breweries) => {
             if (breweries.length === 0) {
@@ -10,7 +11,13 @@ const cityFetch = (city = "Boulder") => {
             } else {
                 allBreweries = [...breweries];
                 activePageBreweries = [...allBreweries].splice(0,10)
-                totalPages = Math.ceil(allBreweries.length / 10)
+                resultsCount = allBreweries.length
+                totalPages = Math.ceil(resultsCount / 10)
+                if (resultsCount === 0) {
+                    breweryResultsCount.textContent = 'No results'
+                } else {
+                    breweryResultsCount.textContent = `${resultsCount} breweries found!`
+                }
                 previousPageButton.setAttribute("disabled", "true")
                 if (totalPages > 1) {
                     nextPageButton.removeAttribute("disabled")
@@ -80,7 +87,7 @@ const renderBreweryRow = (brewery) => {
         <td class="d-none d-lg-table-cell">${brewery.street}, ${brewery.city}, ${brewery.state} ${brewery.postal_code}</td>
         <td>${phoneNumberCheck}</td>
     `;
-    newBreweryRowElement.id          = `${brewery.id}`
+    newBreweryRowElement.id          = `api-id-${brewery.id}`
     newBreweryRowElement.classList.add('brewery-list-element')
     breweryResultsTable.appendChild(newBreweryRowElement)
     
@@ -100,7 +107,7 @@ const renderBreweryRow = (brewery) => {
 const renderBrewery = (brewery) => {
     const oldActiveRow = document.querySelector("tr.active")
     if (oldActiveRow !== null) {oldActiveRow.classList.remove("active")}
-    const newActiveRow = document.querySelector(`#${brewery.id}`)
+    const newActiveRow = document.querySelector(`#api-id-${brewery.id}`)
     newActiveRow.classList.add("active")
     currentBrewery.breweryApiId = brewery.id;
     currentBrewery.name = brewery.name;
