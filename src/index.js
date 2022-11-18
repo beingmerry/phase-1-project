@@ -2,11 +2,11 @@
 //  🔨  1. Helper functions are located in the helper.js file 🔨
 //  🌐  2. Global variables are located in the global.js file 🌐
 // 🏗️ Current Tasks
-//  🎯🚩1. Flesh out the rest of the HTML elements
-//  🎯🚩 2. Build Basic CSS (top bar, 2 columns, footer) w/ Bootstrap styles
-//  🎯🚩 3. Construct JS to perform search function for city
-//  🎯🚩 4. Build the like function into each brewery, when liked, load that brewery into local db
-//  🎯🚩 5. Build the "Add to my bar hop" function
+//  🎯🟢 1. Flesh out the rest of the HTML elements
+//  🎯🟢 2. Build Basic CSS (top bar, 2 columns, footer) w/ Bootstrap styles
+//  🎯🟢 3. Construct JS to perform search function for city
+//  🎯🟢 4. Build the like function into each brewery, when liked, load that brewery into local db
+//  🎯❓ 5. Build the "Add to my bar hop" function
 
 // 🥇 Initialize all scripts, forms, and event listeners
 const init = () => {
@@ -20,8 +20,8 @@ const init = () => {
     favoritesFetch();
 };
 
+// 🎊 On click, to party or not to party, that is the question
 const initPartyToggleButton = () => {
-  
   const partyToggleButton = document.querySelector('#flexSwitchCheckDefault')
   const confettiElement = document.querySelector('#world')
   partyToggleButton.checked = false

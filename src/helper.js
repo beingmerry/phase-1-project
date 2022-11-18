@@ -2,7 +2,7 @@
 
 const cityFetch = (city = "Boulder") => {
     currentPage = 1
-    fetch(`https://api.openbrewerydb.org/breweries?by_city=${city}&per_page=50`)
+    fetch(`https://api.openbrewerydb.org/breweries?by_city=${city}&per_page=100`)
         .then((response) => response.json())
         .then((breweries) => {
             allBreweries = [...breweries];
@@ -10,22 +10,22 @@ const cityFetch = (city = "Boulder") => {
             resultsCount = allBreweries.length
             totalPages = Math.ceil(resultsCount / 10)
             if (resultsCount === 0) {
+                breweryResultsTable.innerHTML = ""
                 breweryResultsCount.textContent = 'No results, check spelling.'
             } else {
                 breweryResultsCount.textContent = `${resultsCount} breweries found!`
+                loadSearchResults(activePageBreweries)    
             }
             previousPageButton.setAttribute("disabled", "true")
             if (totalPages > 1) {
                 nextPageButton.removeAttribute("disabled")
             } else {
                 nextPageButton.setAttribute("disabled", "true")
-            }
-            loadSearchResults(activePageBreweries);
-        
+            }    
         })
         .catch((error) => {
             console.error(error);
-            errorMessage.textContent = "⛔ API SERVER ERROR";
+            errorMessage.textContent = `⛔ ${error}`;
             showErrorMessage()
         });
     // add code to show city on screen

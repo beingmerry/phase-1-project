@@ -89,8 +89,6 @@ footer {
 h2#brewery-type{
   text-transform: capitalize;
 }
-
-
 #error-container {
   position: fixed;
   top: 0;
@@ -100,7 +98,6 @@ h2#brewery-type{
   background-color: rgba(255, 156, 156, 0.5);
   z-index: 9999;
 }
-
 #error-message {
   position: fixed;
   padding: 30px;
