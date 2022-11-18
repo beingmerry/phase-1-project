@@ -1,3 +1,42 @@
 {
-  "myBreweryList": []
+  "myBreweryList": [
+    {
+      "breweryApiId": "boulder-beer-on-walnut-boulder",
+      "name": "Boulder Beer On Walnut",
+      "breweryType": "brewpub",
+      "breweryFullAddress": "1123 Walnut St, Boulder, Colorado 80302-5116",
+      "url": null,
+      "id": 1
+    },
+    {
+      "breweryApiId": "black-cat-brewing-boulder",
+      "name": "Black Cat Brewing",
+      "breweryType": "planning",
+      "breweryFullAddress": "null, Boulder, Colorado 80302",
+      "id": 2
+    },
+    {
+      "breweryApiId": "beyond-the-mountain-brewing-company-boulder",
+      "name": "Beyond The Mountain Brewing Company",
+      "breweryType": "micro",
+      "breweryFullAddress": "6035 Longbow Dr Unit 109, Boulder, Colorado 80301-3203",
+      "id": 3
+    },
+    {
+      "breweryApiId": "asher-brewing-co-boulder",
+      "name": "Asher Brewing Co",
+      "breweryType": "micro",
+      "breweryFullAddress": "4699 Nautilus Ct S Ste 104, Boulder, Colorado 80301-5306",
+      "url": "http://asherbrewing.com",
+      "id": 4
+    },
+    {
+      "breweryApiId": "bru-handbuilt-ales-and-eats-boulder",
+      "name": "BRU Handbuilt Ales and Eats",
+      "breweryType": "brewpub",
+      "breweryFullAddress": "5290 Arapahoe Ave, Boulder, Colorado 80303-1269",
+      "url": "http://www.bruboulder.com",
+      "id": 5
+    }
+  ]
 }

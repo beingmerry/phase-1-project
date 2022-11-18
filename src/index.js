@@ -40,6 +40,7 @@ const initWebStorageToggleButton = () => {
       serverStateGood = false
       webStorageModeToggleButton.checked = true
       localStorage.setItem('webStorageMode', true)
+      localStorage.setItem('localFavoriteBreweries', [])
     }
   })
 }

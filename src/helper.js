@@ -45,8 +45,13 @@ const favoritesFetch = () => {
         .catch((error) => {
             // 🏗️ work in progress on webStorageMode
             if (webStorageMode) {
-                localFavoriteBreweries = JSON.parse(localStorage.getItem("localFavoriteBreweries"))
-                localFavoriteBreweries.forEach(el => renderFavorite(el))
+                let getLocalBreweries = localStorage.getItem("localFavoriteBreweries")
+                if (getLocalBreweries !== "" ) {
+                    localFavoriteBreweries = JSON.parse(localStorage.getItem("localFavoriteBreweries"))
+                    localFavoriteBreweries.forEach(el => renderFavorite(el))
+                } else {
+                    localFavoriteBreweries = []
+                }
             } else {
                 serverStateGood = false
                 console.warn(error)
