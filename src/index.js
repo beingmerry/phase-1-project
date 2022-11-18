@@ -18,11 +18,35 @@ const init = () => {
     initPartyToggleButton();
     cityFetch();
     favoritesFetch();
+
+    initWebStorageToggleButton();
 };
+
+// 🏗️🗄️🚩🧪 On click, activate webStorageMode
+const initWebStorageToggleButton = () => {
+  const webStorageModeToggleButton = document.querySelector('#webStorageModeFlexSwitch')
+  
+  webStorageModeToggleButton.checked = localStorage.length !== 0
+  webStorageMode = webStorageModeToggleButton.checked
+  serverStateGood = webStorageMode ? false: true
+  webStorageModeToggleButton.addEventListener('click', () => {
+    if (webStorageMode) {
+      serverStateGood = true
+      webStorageModeToggleButton.checked = false
+      localStorage.clear()
+      webStorageMode = false
+    } else {
+      webStorageMode = true
+      serverStateGood = false
+      webStorageModeToggleButton.checked = true
+      localStorage.setItem('webStorageMode', true)
+    }
+  })
+}
 
 // 🎊 On click, to party or not to party, that is the question
 const initPartyToggleButton = () => {
-  const partyToggleButton = document.querySelector('#flexSwitchCheckDefault')
+  const partyToggleButton = document.querySelector('#partyModeFlexSwitch')
   const confettiElement = document.querySelector('#world')
   partyToggleButton.checked = false
   partyToggleButton.addEventListener('click', () => {

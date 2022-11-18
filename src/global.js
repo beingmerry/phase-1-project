@@ -6,6 +6,10 @@ let currentPage    = 1
 let totalPages     = 1
 let resultsCount   = 0
 
+// 🏗️🗄️🚩 WebStorage Mode - ToDo
+let webStorageMode = false
+let localFavoriteBreweries = []
+
 //Server State Check
 let serverStateGood = true 
 
